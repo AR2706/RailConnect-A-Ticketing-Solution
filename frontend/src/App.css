@@ -1,0 +1,197 @@
+/* frontend/src/App.css */
+
+/* --- GLOBAL RESET --- */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  background-color: #f0f2f5; /* Light gray background like Facebook/LinkedIn */
+  color: #333;
+  min-height: 100vh;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+  background: linear-gradient(90deg, #2c3e50, #4ca1af); /* Professional Gradient */
+  padding: 1rem 2rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar h2 { margin: 0; font-size: 1.5rem; letter-spacing: 1px; }
+.nav-links { display: flex; gap: 20px; align-items: center; }
+.navbar a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.2s; }
+.navbar a:hover { opacity: 0.8; }
+.logout-btn {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* --- AUTH PAGE (LOGIN/REGISTER) - PERFECT CENTERING --- */
+/* This wrapper forces the box to the exact center of the screen */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh; /* Takes up full height minus navbar */
+  padding: 20px;
+}
+
+.center-box {
+  background: white;
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Soft shadow */
+  text-align: center;
+}
+
+.center-box h2 { margin-bottom: 20px; color: #2c3e50; }
+.center-box input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+  font-size: 1rem;
+}
+.center-box input:focus { outline: none; border-color: #4ca1af; background: white; }
+
+.primary-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background: #2c3e50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.primary-btn:hover { background: #34495e; transform: translateY(-2px); }
+
+/* --- HOME PAGE LAYOUT --- */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  gap: 20px;
+  height: calc(100vh - 80px);
+}
+
+@media (min-width: 900px) {
+  .home-container { flex-direction: row; }
+  
+  .sidebar {
+    width: 350px;
+    flex-shrink: 0;
+    height: 100%;
+    overflow-y: auto;
+  }
+  
+  .booking-area {
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+  }
+}
+
+/* --- SIDEBAR (TRAIN LIST) --- */
+.sidebar {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.sidebar h3 { margin-top: 0; color: #7f8c8d; border-bottom: 2px solid #f0f2f5; padding-bottom: 10px; }
+
+.train-card {
+  background: #fff;
+  border: 1px solid #eee;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.train-card:hover { transform: translateX(5px); border-color: #4ca1af; }
+.train-card.active { background: #eefbfd; border-color: #4ca1af; border-left: 5px solid #4ca1af; }
+
+/* --- BOOKING AREA --- */
+.booking-area {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* The Welcome "Hero" State */
+.placeholder-content {
+  text-align: center;
+  margin-top: 50px;
+  color: #95a5a6;
+}
+.placeholder-content h2 { font-size: 2rem; color: #2c3e50; margin-bottom: 10px; }
+.placeholder-content p { font-size: 1.1rem; }
+.placeholder-icon { font-size: 4rem; margin-bottom: 20px; display: block; }
+
+/* --- SEATS --- */
+.seat-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 seats per row */
+  gap: 15px;
+  margin-top: 30px;
+}
+.seat {
+  width: 50px; height: 50px;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.seat.available { background: #27ae60; }
+.seat.booked { background: #e74c3c; cursor: not-allowed; opacity: 0.3; }
+.seat:hover:not(:disabled) { transform: scale(1.1); }
+/* FORCE INPUT VISIBILITY */
+input {
+  background-color: #ffffff !important; /* Force White Background */
+  color: #000000 !important;           /* Force Black Text */
+  border: 1px solid #ccc !important;    /* Grey Border */
+  caret-color: #000000;                 /* Black Cursor blinking line */
+}
+
+/* Optional: Make it look nicer when you click it */
+input:focus {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #2c3e50 !important;
+  outline: none;
+  box-shadow: 0 0 5px rgba(44, 62, 80, 0.2);
+}
